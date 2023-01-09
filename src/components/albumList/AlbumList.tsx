@@ -10,6 +10,7 @@ import { fetchUsers } from "../../redux/users";
 import generateRandomColor from "../../utils/randomeGeneratorColor";
 
 import styles from "./album-list.module.scss";
+import Pagination from "../pagination/Pagination";
 
 const AlbumList: React.FC = () => {
   const dispatch = useAppDispatch();
@@ -43,11 +44,14 @@ const AlbumList: React.FC = () => {
       {loading === "pending" || usersLoading === "pending" ? (
         <CircularProgress />
       ) : (
-        <div className={styles["grid-box"]}>
-          {data.map((item: AlbumData) => (
-            <Album data={item} user={findUser(item.userId)} key={item.id} />
-          ))}
-        </div>
+        <>
+          <div className={styles["grid-box"]}>
+            {data.map((item: AlbumData) => (
+              <Album data={item} user={findUser(item.userId)} key={item.id} />
+            ))}
+          </div>
+          <Pagination />
+        </>
       )}
     </div>
   );

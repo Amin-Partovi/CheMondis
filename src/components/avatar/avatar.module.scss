@@ -4,12 +4,15 @@
     align-items: center;
     gap: 5px;
     z-index: 1;
-    left: 0;
-    top: 0;
+    left: 8px;
+    top: 8px;
     color: var(--font-color);
-    background-color: var(--secondary-color);
+    background-color: var(--primary-color);
     padding: 3px 5px;
     border-radius: 5px;
+    box-shadow: 1px 1px 20px 1px rgba(0,0,0,0.75);
+    -webkit-box-shadow: 1px 1px 20px 1px rgba(0,0,0,0.75);
+    -moz-box-shadow: 1px 1px 20px 1px rgba(0,0,0,0.75);
     .avatar{
         width: 20px;
         height: 20px;
