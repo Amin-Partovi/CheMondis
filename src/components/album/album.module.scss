@@ -5,7 +5,34 @@
     align-items: center;
     padding: 10px;
     border-radius: 10px;
-    border: 1px solid white;
+   
+
+    .image-box{
+        position: relative;
+
+
+        .icon-box{
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            opacity: 0;
+            z-index: 1;
+            background-color: var(--primary-color);
+            width: 50px;
+            height: 50px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            border-radius: 50%;
+            transition: all 500ms;
+            &.hovered{
+                
+                opacity: 0.5;
+            }
+        }
+    }
+ 
 
 
     .cover{
