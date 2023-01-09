@@ -1,4 +1,5 @@
 import React, { useEffect } from "react";
+import CircularProgress from "@mui/material/CircularProgress";
 
 import { useAppDispatch } from "../../hooks/useAppDispatch";
 import { useAppSelector } from "../../hooks/useAppSelector";
@@ -9,7 +10,7 @@ import styles from "./album-list.module.scss";
 
 const AlbumList: React.FC = () => {
   const dispatch = useAppDispatch();
-  const data = useAppSelector((state) => state.albums);
+  const { data, loading, error } = useAppSelector((state) => state.albums);
 
   useEffect(() => {
     dispatch(
@@ -17,7 +18,11 @@ const AlbumList: React.FC = () => {
     ).catch((err) => console.log(err));
   }, []);
 
-  return <div className={styles["grid-box"]}>hi</div>;
+  return (
+    <div className={styles["grid-box"]}>
+      {loading === "pending" ? <CircularProgress /> : <div></div>}
+    </div>
+  );
 };
 
 export default AlbumList;
