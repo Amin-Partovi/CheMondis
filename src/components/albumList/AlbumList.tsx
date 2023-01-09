@@ -4,7 +4,8 @@ import CircularProgress from "@mui/material/CircularProgress";
 import { useAppDispatch } from "../../hooks/useAppDispatch";
 import { useAppSelector } from "../../hooks/useAppSelector";
 import { fetchAlbums } from "../../redux/albums";
-import { FetchAlbumsParams } from "../../utils/types";
+import { AlbumData, FetchAlbumsParams } from "../../utils/types";
+import Album from "../album/Album";
 
 import styles from "./album-list.module.scss";
 
@@ -14,13 +15,21 @@ const AlbumList: React.FC = () => {
 
   useEffect(() => {
     dispatch(
-      fetchAlbums({ params: { _start: 0, _limit: 5 } } as FetchAlbumsParams)
+      fetchAlbums({ params: { _start: 0, _limit: 40 } } as FetchAlbumsParams)
     ).catch((err) => console.log(err));
   }, []);
 
   return (
-    <div className={styles["grid-box"]}>
-      {loading === "pending" ? <CircularProgress /> : <div></div>}
+    <div>
+      {loading === "pending" ? (
+        <CircularProgress />
+      ) : (
+        <div className={styles["grid-box"]}>
+          {data.map((item: AlbumData) => (
+            <Album data={item} />
+          ))}
+        </div>
+      )}
     </div>
   );
 };

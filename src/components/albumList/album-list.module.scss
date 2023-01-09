@@ -1,3 +1,26 @@
-.album-list{
-    
+@import "../../styles/breakpoints.scss";
+
+.grid-box{
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+    gap: 30px;
+
+    @media screen and (max-width:$LG) {
+        grid-template-columns: 1fr 1fr 1fr 1fr;
+    }
+
+    @media screen and (max-width:$MD) {
+        grid-template-columns: 1fr 1fr 1fr;
+    }
+
+    @media screen and (max-width:$SM) {
+        grid-template-columns: 1fr 1fr;
+    }
+
+    @media screen and (max-width:$XS) {
+        grid-template-columns: 1fr;
+    }
+
+ 
+ 
 }

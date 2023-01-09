@@ -4,7 +4,7 @@ import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import Container from "./components/container/Container";
 
 const AlbumList = React.lazy(() => import("./components/albumList/AlbumList"));
-const Album = React.lazy(() => import("./components/album/Album"));
+const PhotoList = React.lazy(() => import("./components/photoList/PhotoList"));
 
 const App: React.FC = () => {
   return (
@@ -13,7 +13,7 @@ const App: React.FC = () => {
         <Router>
           <Routes>
             <Route path="/" element={<AlbumList />} />
-            <Route path="/:albumId" element={<Album />} />
+            <Route path="/:albumId" element={<PhotoList />} />
           </Routes>
         </Router>
       </Suspense>
