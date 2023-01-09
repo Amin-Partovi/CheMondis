@@ -2,20 +2,15 @@ import React, { useEffect } from "react";
 import { useAppDispatch } from "./hooks/useAppDispatch";
 import { fetchAlbum } from "./redux/album";
 import { fetchAlbums } from "./redux/albums";
+import { fetchUsers } from "./redux/users";
 
-interface AlbumsParams {
-  params: Record<"_start" | "_limit", number>;
-}
-
-interface AlbumParams {
-  params: Record<"_start" | "_limit" | "albumid", number>;
-}
+import { FetchAlbumParams, FetchAlbumsParams } from "./utils/types";
 
 const App: React.FC = () => {
   const dispatch = useAppDispatch();
   useEffect(() => {
     dispatch(
-      fetchAlbums({ params: { _start: 0, _limit: 5 } } as AlbumsParams)
+      fetchAlbums({ params: { _start: 0, _limit: 5 } } as FetchAlbumsParams)
     ).then((res) => {
       console.log(res);
     });
@@ -23,8 +18,10 @@ const App: React.FC = () => {
     dispatch(
       fetchAlbum({
         params: { albumid: 5, _start: 0, _limit: 5 },
-      } as AlbumParams)
+      } as FetchAlbumParams)
     );
+
+    dispatch(fetchUsers({}));
   }, []);
   return <div>photo-album</div>;
 };
