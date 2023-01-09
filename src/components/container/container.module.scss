@@ -1,0 +1,16 @@
+.container{
+    background-color: var(--secondary-color);
+    height: 100%;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+ 
+    
+    .main{
+        background-color: var(--primary-color);
+        width: 1200px;
+        padding: 50px 20px;
+        color: var(--font-color);
+    }
+
+}

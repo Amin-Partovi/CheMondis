@@ -1,29 +1,24 @@
-import React, { useEffect } from "react";
-import { useAppDispatch } from "./hooks/useAppDispatch";
-import { fetchAlbum } from "./redux/album";
-import { fetchAlbums } from "./redux/albums";
-import { fetchUsers } from "./redux/users";
+import React, { Suspense } from "react";
+import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 
-import { FetchAlbumParams, FetchAlbumsParams } from "./utils/types";
+import Container from "./components/container/Container";
+
+const AlbumList = React.lazy(() => import("./components/albumList/AlbumList"));
+const Album = React.lazy(() => import("./components/album/Album"));
 
 const App: React.FC = () => {
-  const dispatch = useAppDispatch();
-  useEffect(() => {
-    dispatch(
-      fetchAlbums({ params: { _start: 0, _limit: 5 } } as FetchAlbumsParams)
-    ).then((res) => {
-      console.log(res);
-    });
-
-    dispatch(
-      fetchAlbum({
-        params: { albumid: 5, _start: 0, _limit: 5 },
-      } as FetchAlbumParams)
-    );
-
-    dispatch(fetchUsers({}));
-  }, []);
-  return <div>photo-album</div>;
+  return (
+    <Container>
+      <Suspense fallback="loading">
+        <Router>
+          <Routes>
+            <Route path="/" element={<AlbumList />} />
+            <Route path="/:albumId" element={<Album />} />
+          </Routes>
+        </Router>
+      </Suspense>
+    </Container>
+  );
 };
 
 export default App;
