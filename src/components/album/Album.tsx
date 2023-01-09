@@ -1,18 +1,26 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 
-import { AlbumData } from "../../utils/types";
+import { AlbumData, UserData } from "../../utils/types";
 import Show from "../../assets/images/show.svg";
 
 import styles from "./album.module.scss";
+import Avatar from "../avatar/Avatar";
 
 const IMG_SRC = "https://via.placeholder.com/150/00ff";
 
 interface Props {
   data: AlbumData;
+  user: {
+    userData: UserData;
+    color: string;
+  };
 }
 
-const Album: React.FC<Props> = ({ data }) => {
+const Album: React.FC<Props> = ({ data, user }) => {
+  const { title, id } = data;
+  const { userData, color } = user;
+
   const [isHovered, setIsHovered] = useState<boolean>(false);
 
   function handleMouseEnter() {
@@ -23,7 +31,6 @@ const Album: React.FC<Props> = ({ data }) => {
     setIsHovered(false);
   }
 
-  const { title, id } = data;
   return (
     <Link to={`/${id}`}>
       <div
@@ -31,6 +38,7 @@ const Album: React.FC<Props> = ({ data }) => {
         onMouseEnter={handleMouseEnter}
         onMouseLeave={handleMouseLeave}
       >
+        <Avatar user={userData} color={color} />
         <div className={styles["image-box"]}>
           <img className={styles.cover} src={IMG_SRC} alt={title} />
 

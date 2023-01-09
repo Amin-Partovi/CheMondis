@@ -1,0 +1,20 @@
+.avatar-box{
+    position: absolute;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    z-index: 1;
+    left: 0;
+    top: 0;
+    color: var(--font-color);
+    background-color: var(--secondary-color);
+    padding: 3px 5px;
+    border-radius: 5px;
+    .avatar{
+        width: 20px;
+        height: 20px;
+        background-color: red;
+        border-radius: 50%;
+
+    }
+}
