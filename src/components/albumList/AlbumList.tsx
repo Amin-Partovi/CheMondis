@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import CircularProgress from "@mui/material/CircularProgress";
+import { useSearchParams } from "react-router-dom";
 
 import { useAppDispatch } from "../../hooks/useAppDispatch";
 import { useAppSelector } from "../../hooks/useAppSelector";
@@ -11,11 +11,15 @@ import generateRandomColor from "../../utils/randomeGeneratorColor";
 
 import styles from "./album-list.module.scss";
 import Pagination from "../pagination/Pagination";
+import PageLimit from "../pageLimit/PageLimit";
+import Loading from "../loading/Loading";
 
 const AlbumList: React.FC = () => {
   const dispatch = useAppDispatch();
   const { data, loading } = useAppSelector((state) => state.albums);
   const userMap = new Map();
+  const [searchParams] = useSearchParams();
+  const limit = searchParams.get("limit");
 
   const { data: users, loading: usersLoading } = useAppSelector(
     (state) => state.users
@@ -23,11 +27,13 @@ const AlbumList: React.FC = () => {
 
   useEffect(() => {
     dispatch(
-      fetchAlbums({ params: { _start: 0, _limit: 40 } } as FetchAlbumsParams)
+      fetchAlbums({
+        params: { _start: 0, _limit: +limit },
+      } as FetchAlbumsParams)
     ).catch((err) => console.log(err));
 
     dispatch(fetchUsers({})).catch((err) => console.log(err));
-  }, []);
+  }, [limit]);
 
   function findUser(userId: number) {
     if (userMap.has(userId)) {
@@ -40,11 +46,12 @@ const AlbumList: React.FC = () => {
   }
 
   return (
-    <div>
+    <div className={styles["album-list"]}>
       {loading === "pending" || usersLoading === "pending" ? (
-        <CircularProgress />
+        <Loading />
       ) : (
         <>
+          <PageLimit />
           <div className={styles["grid-box"]}>
             {data.map((item: AlbumData) => (
               <Album data={item} user={findUser(item.userId)} key={item.id} />

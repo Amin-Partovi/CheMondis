@@ -9,7 +9,7 @@ const PhotoList = React.lazy(() => import("./components/photoList/PhotoList"));
 const App: React.FC = () => {
   return (
     <Container>
-      <Suspense fallback="loading">
+      <Suspense fallback="">
         <Router>
           <Routes>
             <Route path="/" element={<AlbumList />} />
