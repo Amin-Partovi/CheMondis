@@ -32,7 +32,7 @@ const Album: React.FC<Props> = ({ data, user }) => {
   }
 
   return (
-    <Link to={`/${id}`}>
+    <Link to={`/${id}`} className={styles.link}>
       <div
         className={styles["album-box"]}
         onMouseEnter={handleMouseEnter}
