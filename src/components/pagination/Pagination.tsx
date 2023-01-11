@@ -1,35 +1,37 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import MuPagination from "@mui/material/Pagination";
 import Stack from "@mui/material/Stack";
-import {
-  useSearchParams,
-  createSearchParams,
-  useNavigate,
-} from "react-router-dom";
+import { useSearchParams } from "react-router-dom";
 
 import styles from "./pagination.module.scss";
 
 const Pagination: React.FC = () => {
-  const [searchParams] = useSearchParams();
+  const [searchParams, setSearchParams] = useSearchParams();
+  const [page, setPage] = useState<number>(0);
+
   const limit = searchParams.get("limit") ?? 20;
-  const navigate = useNavigate();
+  const start = searchParams.get("start") ?? 0;
+
+  useEffect(() => {
+    setPage(+start / +limit + 1);
+  }, [start]);
 
   function handleChange(event: React.ChangeEvent<unknown>, page: number) {
-    navigate({
-      search: createSearchParams({
-        start: (+limit * (page - 1)).toString(),
-      }).toString(),
-    });
+    const newParamValue = (+limit * (page - 1)).toString();
+    searchParams.has("start")
+      ? searchParams.set("start", newParamValue)
+      : searchParams.append("start", newParamValue);
+    setSearchParams(searchParams);
   }
   return (
     <div className={styles["pagination-box"]}>
       <Stack spacing={1}>
         <MuPagination
           count={10}
-          variant="outlined"
           className={styles.pagination}
           color="primary"
           onChange={handleChange}
+          page={page}
         />
       </Stack>
     </div>

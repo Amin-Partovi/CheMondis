@@ -1,9 +1,5 @@
 import React from "react";
-import {
-  createSearchParams,
-  useNavigate,
-  useSearchParams,
-} from "react-router-dom";
+import { useSearchParams } from "react-router-dom";
 
 import { texts } from "../../texts/text";
 
@@ -12,28 +8,24 @@ import styles from "./page-limit.module.scss";
 const pageLimits = [20, 30, 50];
 
 const PageLimit: React.FC = () => {
-  const navigate = useNavigate();
-  const [searchParams] = useSearchParams();
+  const [searchParams, setSearchParams] = useSearchParams();
   const limit = searchParams.get("limit") ?? 20;
 
   function handleClick(limit: number) {
-    navigate({
-      search: createSearchParams({
-        limit: limit.toString(),
-      }).toString(),
-    });
+    searchParams.set("limit", limit.toString());
+
+    setSearchParams(searchParams);
   }
 
   return (
     <div className={styles["limit-box"]}>
       {pageLimits.map((item: number, index: number) => (
         <>
-          <span
-            onClick={() => handleClick(item)}
+          <div
             className={`${styles.limit} ${+limit === item && styles.active}`}
           >
-            {item}
-          </span>
+            <span onClick={() => handleClick(item)}>{item}</span>
+          </div>
           {index !== pageLimits.length - 1 && "|"}
         </>
       ))}

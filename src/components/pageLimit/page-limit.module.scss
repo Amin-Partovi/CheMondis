@@ -1,19 +1,25 @@
-.limit-box{
-    padding: 8px 10px;
-    box-shadow: 1px 1px 20px -5px rgba(0,0,0,0.75);
-    -webkit-box-shadow: 1px 1px 20px -5px rgba(0,0,0,0.75);
-    -moz-box-shadow: 1px 1px 20px -5px rgba(0,0,0,0.75);
-    border-radius: 10px;
+.limit-box {
+  padding: 8px 10px;
+  box-shadow: 1px 1px 20px -5px rgba(0, 0, 0, 0.75);
+  -webkit-box-shadow: 1px 1px 20px -5px rgba(0, 0, 0, 0.75);
+  -moz-box-shadow: 1px 1px 20px -5px rgba(0, 0, 0, 0.75);
+  border-radius: 10px;
+  display: flex;
+  gap: 8px;
+  width: fit-content;
+  align-items: center;
+
+  .limit {
+    cursor: pointer;
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
     display: flex;
-    gap: 8px;
-    width: fit-content;
+    justify-content: center;
+    align-items: center;
 
-
-    .limit{
-        cursor: pointer;
-        &.active{
-
-            color:#55ff00;
-        }
+    &.active {
+      background-color: var(--tertiary-color);
     }
+  }
 }

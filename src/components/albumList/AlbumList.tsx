@@ -20,6 +20,7 @@ const AlbumList: React.FC = () => {
   const userMap = new Map();
   const [searchParams] = useSearchParams();
   const limit = searchParams.get("limit") ?? 20;
+  const start = searchParams.get("start") ?? 0;
 
   const { data: users, loading: usersLoading } = useAppSelector(
     (state) => state.users
@@ -28,12 +29,12 @@ const AlbumList: React.FC = () => {
   useEffect(() => {
     dispatch(
       fetchAlbums({
-        params: { _start: 0, _limit: +limit },
+        params: { _limit: +limit, _start: +start },
       } as FetchAlbumsParams)
     ).catch((err) => console.log(err));
 
     dispatch(fetchUsers({})).catch((err) => console.log(err));
-  }, [limit]);
+  }, [limit, start]);
 
   function findUser(userId: number) {
     if (userMap.has(userId)) {
