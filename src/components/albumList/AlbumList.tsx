@@ -11,6 +11,7 @@ import generateRandomColor from "../../utils/randomeGeneratorColor";
 import Pagination from "../pagination/Pagination";
 import PageLimit from "../pageLimit/PageLimit";
 import Loading from "../loading/Loading";
+import EmptyState from "../emptyState/EmptyState";
 
 import styles from "./album-list.module.scss";
 
@@ -52,12 +53,23 @@ const AlbumList: React.FC = () => {
         <Loading />
       ) : (
         <>
-          <PageLimit />
-          <div className={styles["grid-box"]}>
-            {data.map((item: AlbumData) => (
-              <Album data={item} user={findUser(item.userId)} key={item.id} />
-            ))}
-          </div>
+          {data.length === 0 ? (
+            <EmptyState />
+          ) : (
+            <>
+              <PageLimit />
+              <div className={styles["grid-box"]}>
+                {data.map((item: AlbumData) => (
+                  <Album
+                    data={item}
+                    user={findUser(item.userId)}
+                    key={item.id}
+                  />
+                ))}
+              </div>
+            </>
+          )}
+
           <Pagination />
         </>
       )}
