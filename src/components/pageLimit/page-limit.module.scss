@@ -11,5 +11,9 @@
 
     .limit{
         cursor: pointer;
+        &.active{
+
+            color:#55ff00;
+        }
     }
 }

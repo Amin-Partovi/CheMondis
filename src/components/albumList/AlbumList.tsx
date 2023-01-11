@@ -8,18 +8,18 @@ import { AlbumData, FetchAlbumsParams } from "../../utils/types";
 import Album from "../album/Album";
 import { fetchUsers } from "../../redux/users";
 import generateRandomColor from "../../utils/randomeGeneratorColor";
-
-import styles from "./album-list.module.scss";
 import Pagination from "../pagination/Pagination";
 import PageLimit from "../pageLimit/PageLimit";
 import Loading from "../loading/Loading";
+
+import styles from "./album-list.module.scss";
 
 const AlbumList: React.FC = () => {
   const dispatch = useAppDispatch();
   const { data, loading } = useAppSelector((state) => state.albums);
   const userMap = new Map();
   const [searchParams] = useSearchParams();
-  const limit = searchParams.get("limit");
+  const limit = searchParams.get("limit") ?? 20;
 
   const { data: users, loading: usersLoading } = useAppSelector(
     (state) => state.users
