@@ -13,6 +13,7 @@ const App: React.FC = () => {
         <Router>
           <Routes>
             <Route path="/" element={<AlbumList />} />
+
             <Route path="/:albumId" element={<PhotoList />} />
           </Routes>
         </Router>

@@ -13,7 +13,7 @@ const Pagination: React.FC = () => {
   const start = searchParams.get("start") ?? 0;
 
   useEffect(() => {
-    setPage(+start / +limit + 1);
+    setPage(Math.floor(+start / +limit + 1));
   }, [start]);
 
   function handleChange(event: React.ChangeEvent<unknown>, page: number) {

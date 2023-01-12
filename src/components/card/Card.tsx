@@ -27,8 +27,6 @@ const Card: React.FC<Props> = ({
 }) => {
   const { title } = data;
 
-  console.log(user);
-
   const [isHovered, setIsHovered] = useState<boolean>(false);
 
   function handleMouseEnter() {
@@ -46,7 +44,7 @@ const Card: React.FC<Props> = ({
         onMouseEnter={handleMouseEnter}
         onMouseLeave={handleMouseLeave}
       >
-        {withAvatar && <Avatar user={user} color={color} />}
+        {user && withAvatar && <Avatar user={user} color={color} />}
         <div className={styles["image-box"]}>
           <img className={styles.cover} src={imageSrc} alt={title} />
 

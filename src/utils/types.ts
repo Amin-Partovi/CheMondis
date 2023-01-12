@@ -68,3 +68,10 @@ export interface AlbumInfo {
   user: Partial<UserData>;
   album: AlbumData;
 }
+
+interface UserInfo {
+  user: UserData;
+  color: string;
+}
+
+export type AvatarInfo = Record<number, UserInfo>;

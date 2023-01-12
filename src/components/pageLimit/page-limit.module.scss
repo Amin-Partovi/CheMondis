@@ -9,17 +9,23 @@
   width: fit-content;
   align-items: center;
 
-  .limit {
-    cursor: pointer;
-    width: 30px;
-    height: 30px;
-    border-radius: 50%;
+  .flex-box {
     display: flex;
-    justify-content: center;
     align-items: center;
+    gap: 8px;
 
-    &.active {
-      background-color: var(--tertiary-color);
+    .limit {
+      cursor: pointer;
+      width: 30px;
+      height: 30px;
+      border-radius: 50%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+
+      &.active {
+        background-color: var(--tertiary-color);
+      }
     }
   }
 }
