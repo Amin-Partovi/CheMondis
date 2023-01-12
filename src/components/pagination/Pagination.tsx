@@ -32,6 +32,7 @@ const Pagination: React.FC = () => {
           color="primary"
           onChange={handleChange}
           page={page}
+          size="small"
         />
       </Stack>
     </div>
