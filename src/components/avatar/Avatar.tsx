@@ -5,7 +5,7 @@ import { UserData } from "../../utils/types";
 import styles from "./avatar.module.scss";
 
 interface Props {
-  user: UserData;
+  user: Partial<UserData>;
   color: string;
 }
 

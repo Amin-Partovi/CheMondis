@@ -4,6 +4,12 @@ import { useParams, useSearchParams } from "react-router-dom";
 import { useAppSelector } from "../../hooks/useAppSelector";
 import { useAppDispatch } from "../../hooks/useAppDispatch";
 import { fetchPhotos } from "../../redux/photos";
+import PhotoListHeader from "./PhotoListHeader";
+import PaginatedBox from "../container/PaginatedBox";
+import { PhotoData } from "../../utils/types";
+import Card from "../card/Card";
+
+import styles from "./photo-list.module.scss";
 
 const PhotoList: React.FC = () => {
   const dispatch = useAppDispatch();
@@ -21,9 +27,22 @@ const PhotoList: React.FC = () => {
     );
   }, [albumId, limit, start]);
 
+  function handleClick() {}
+
   return (
     <div>
-      <h1>{album.title}</h1>
+      <PhotoListHeader title={album.title} owner={user.name} />
+      <PaginatedBox data={data} loading={loading === "pending"}>
+        {data.map((item: PhotoData) => (
+          <Card
+            data={item}
+            onClick={handleClick}
+            key={item.id}
+            user={user}
+            imageSrc={item.thumbnailUrl}
+          />
+        ))}
+      </PaginatedBox>
     </div>
   );
 };

@@ -1,30 +1,33 @@
 import React, { useState } from "react";
-import { useNavigate } from "react-router-dom";
 
-import { AlbumData, UserData } from "../../utils/types";
+import { AlbumData, PhotoData, UserData } from "../../utils/types";
 import Show from "../../assets/images/show.svg";
 
-import styles from "./album.module.scss";
+import styles from "./card.module.scss";
 import Avatar from "../avatar/Avatar";
-import { useAppDispatch } from "../../hooks/useAppDispatch";
-import { setAlbumInfo } from "../../redux/albumInfo";
 
 const IMG_SRC = "https://via.placeholder.com/150/00ff";
 
 interface Props {
-  data: AlbumData;
-  user: {
-    userData: UserData;
-    color: string;
-  };
+  data: AlbumData | PhotoData;
+  user: Partial<UserData>;
+  color?: string;
+  onClick: (data: AlbumData | PhotoData, userData: Partial<UserData>) => void;
+  withAvatar?: boolean;
+  imageSrc?: string;
 }
 
-const Album: React.FC<Props> = ({ data, user }) => {
-  const { title, id } = data;
-  const { userData, color } = user;
+const Card: React.FC<Props> = ({
+  data,
+  user,
+  onClick,
+  color,
+  withAvatar = false,
+  imageSrc = IMG_SRC,
+}) => {
+  const { title } = data;
 
-  const navigate = useNavigate();
-  const dispatch = useAppDispatch();
+  console.log(user);
 
   const [isHovered, setIsHovered] = useState<boolean>(false);
 
@@ -36,21 +39,16 @@ const Album: React.FC<Props> = ({ data, user }) => {
     setIsHovered(false);
   }
 
-  function handleClick() {
-    dispatch(setAlbumInfo({ user: userData, album: data }));
-    navigate(`${id}`);
-  }
-
   return (
-    <div onClick={handleClick} className={styles.link}>
+    <div onClick={() => onClick(data, user)} className={styles.link}>
       <div
         className={styles["album-box"]}
         onMouseEnter={handleMouseEnter}
         onMouseLeave={handleMouseLeave}
       >
-        <Avatar user={userData} color={color} />
+        {withAvatar && <Avatar user={user} color={color} />}
         <div className={styles["image-box"]}>
-          <img className={styles.cover} src={IMG_SRC} alt={title} />
+          <img className={styles.cover} src={imageSrc} alt={title} />
 
           <div
             className={`${styles["icon-box"]} ${isHovered && styles.hovered}`}
@@ -65,4 +63,4 @@ const Album: React.FC<Props> = ({ data, user }) => {
   );
 };
 
-export default Album;
+export default Card;

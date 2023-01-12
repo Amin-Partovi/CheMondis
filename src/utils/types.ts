@@ -65,6 +65,6 @@ export interface FetchAlbumParams {
 }
 
 export interface AlbumInfo {
-  user: UserData;
+  user: Partial<UserData>;
   album: AlbumData;
 }

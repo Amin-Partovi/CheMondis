@@ -1,4 +1,4 @@
-@import "../../styles/breakpoints.scss";
+
 
 
 
@@ -6,29 +6,5 @@
     min-height: 100vh;
     position: relative;
 
-    .grid-box{
-        display: grid;
-        grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
-        gap: 30px;
-        margin: 20px 0;
-    
-        @media screen and (max-width:$LG) {
-            grid-template-columns: 1fr 1fr 1fr 1fr;
-        }
-    
-        @media screen and (max-width:$MD) {
-            grid-template-columns: 1fr 1fr 1fr;
-        }
-    
-        @media screen and (max-width:$SM) {
-            grid-template-columns: 1fr 1fr;
-        }
-    
-        @media screen and (max-width:$XS) {
-            grid-template-columns: 1fr;
-        }
-    
-     
-     
-    }
+   
 }

@@ -1,22 +1,22 @@
 import React, { useEffect } from "react";
-import { useSearchParams } from "react-router-dom";
+import { useSearchParams, useNavigate } from "react-router-dom";
 
 import { useAppDispatch } from "../../hooks/useAppDispatch";
 import { useAppSelector } from "../../hooks/useAppSelector";
 import { fetchAlbums } from "../../redux/albums";
-import { AlbumData, FetchAlbumsParams } from "../../utils/types";
-import Album from "../album/Album";
+import { AlbumData, FetchAlbumsParams, UserData } from "../../utils/types";
 import { fetchUsers } from "../../redux/users";
 import generateRandomColor from "../../utils/randomeGeneratorColor";
-import Pagination from "../pagination/Pagination";
-import PageLimit from "../pageLimit/PageLimit";
-import Loading from "../loading/Loading";
-import EmptyState from "../emptyState/EmptyState";
+import { setAlbumInfo } from "../../redux/albumInfo";
 
 import styles from "./album-list.module.scss";
+import PaginatedBox from "../container/PaginatedBox";
+import Card from "../card/Card";
 
 const AlbumList: React.FC = () => {
   const dispatch = useAppDispatch();
+  const navigate = useNavigate();
+
   const { data, loading } = useAppSelector((state) => state.albums);
   const userMap = new Map();
   const [searchParams] = useSearchParams();
@@ -47,32 +47,30 @@ const AlbumList: React.FC = () => {
     return userMap.get(userId);
   }
 
+  console.log(userMap);
+
+  function handleClick(data: AlbumData, userData: Partial<UserData>) {
+    dispatch(setAlbumInfo({ user: userData, album: data }));
+    navigate(`${data.id}`);
+  }
+
   return (
     <div className={styles["album-list"]}>
-      {loading === "pending" || usersLoading === "pending" ? (
-        <Loading />
-      ) : (
-        <>
-          {data.length === 0 ? (
-            <EmptyState />
-          ) : (
-            <>
-              <PageLimit />
-              <div className={styles["grid-box"]}>
-                {data.map((item: AlbumData) => (
-                  <Album
-                    data={item}
-                    user={findUser(item.userId)}
-                    key={item.id}
-                  />
-                ))}
-              </div>
-            </>
-          )}
-
-          <Pagination />
-        </>
-      )}
+      <PaginatedBox
+        data={data}
+        loading={loading === "pending" || usersLoading === "pending"}
+      >
+        {data.map((item: AlbumData) => (
+          <Card
+            data={item}
+            user={findUser(item.userId).userData}
+            color={findUser(item.userId).color}
+            key={item.id}
+            onClick={handleClick}
+            withAvatar={true}
+          />
+        ))}
+      </PaginatedBox>
     </div>
   );
 };
