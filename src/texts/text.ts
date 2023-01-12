@@ -4,4 +4,6 @@ export const texts = {
   50: "50",
   PER_PAGE: "per page",
   NO_RESULTS: "No Results Found!",
+  OWNER: "Owner",
+  ALBUM: "Album",
 };

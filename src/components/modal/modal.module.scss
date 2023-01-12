@@ -1,0 +1,16 @@
+@import "../../styles/breakpoints.scss";
+
+.title {
+  font-size: 16px;
+  color: var(--font-color);
+  width: 100%;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  margin-top: 10px;
+}
+
+.close-icon {
+  cursor: pointer;
+  width: 15px;
+}
