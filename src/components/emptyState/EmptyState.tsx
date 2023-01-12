@@ -9,7 +9,7 @@ const EmptyState: React.FC = () => {
   return (
     <div className={styles["empty-box"]}>
       <img src={EmptyBox} alt={texts.NO_RESULTS} />
-      <h1>{texts.NO_RESULTS}</h1>
+      <h1 className={styles["empty-text"]}>{texts.NO_RESULTS}</h1>
     </div>
   );
 };
