@@ -1,10 +1,11 @@
 import { configureStore } from "@reduxjs/toolkit";
 import albums from "./albums";
-import album from "./album";
+import photos from "./photos";
 import users from "./users";
+import albumInfo from "./albumInfo";
 
 const store = configureStore({
-  reducer: { albums, album, users },
+  reducer: { albums, photos, users, albumInfo },
 });
 
 export default store;

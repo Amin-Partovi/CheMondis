@@ -1,11 +1,13 @@
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 import { AlbumData, UserData } from "../../utils/types";
 import Show from "../../assets/images/show.svg";
 
 import styles from "./album.module.scss";
 import Avatar from "../avatar/Avatar";
+import { useAppDispatch } from "../../hooks/useAppDispatch";
+import { setAlbumInfo } from "../../redux/albumInfo";
 
 const IMG_SRC = "https://via.placeholder.com/150/00ff";
 
@@ -21,6 +23,9 @@ const Album: React.FC<Props> = ({ data, user }) => {
   const { title, id } = data;
   const { userData, color } = user;
 
+  const navigate = useNavigate();
+  const dispatch = useAppDispatch();
+
   const [isHovered, setIsHovered] = useState<boolean>(false);
 
   function handleMouseEnter() {
@@ -31,8 +36,13 @@ const Album: React.FC<Props> = ({ data, user }) => {
     setIsHovered(false);
   }
 
+  function handleClick() {
+    dispatch(setAlbumInfo({ user: userData, album: data }));
+    navigate(`${id}`);
+  }
+
   return (
-    <Link to={`/${id}`} className={styles.link}>
+    <div onClick={handleClick} className={styles.link}>
       <div
         className={styles["album-box"]}
         onMouseEnter={handleMouseEnter}
@@ -51,7 +61,7 @@ const Album: React.FC<Props> = ({ data, user }) => {
 
         <h2 className={styles.title}>{title}</h2>
       </div>
-    </Link>
+    </div>
   );
 };
 

@@ -63,3 +63,8 @@ export interface FetchAlbumsParams {
 export interface FetchAlbumParams {
   params: Record<"_start" | "_limit" | "albumid", number>;
 }
+
+export interface AlbumInfo {
+  user: UserData;
+  album: AlbumData;
+}
