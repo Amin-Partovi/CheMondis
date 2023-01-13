@@ -48,7 +48,7 @@ here is the custom types used in the project
       thumbnailUrl: string;
     }  
 
-    `interface UserData {
+    interface UserData {
       id: number;
       name: string;
       username: string;
@@ -70,45 +70,45 @@ here is the custom types used in the project
         catchPhrase: string;
         bs: string;
       };
-    }`  
+    }  
 
-    `interface AlbumsReduxState {
+    interface AlbumsReduxState {
       data: Readonly<AlbumData>[];
       loading: ApiLoading;
       error: string;
-    }`  
+    }  
 
-    `interface AlbumReduxState {
+    interface AlbumReduxState {
       data: Readonly<PhotoData>[];
       loading: ApiLoading;
       error: string;
-    }`  
+    }  
 
-    `interface UsersReduxState {
+    interface UsersReduxState {
       data: Readonly<UserData>[];
       loading: ApiLoading;
       error: string;
-    }`  
+    }  
 
-    `interface FetchAlbumsParams {
+    interface FetchAlbumsParams {
       params: Record<"_start" | "_limit", number>;
-    }`  
+    }  
 
-    `interface FetchAlbumParams {
+    interface FetchAlbumParams {
       params: Record<"_start" | "_limit" | "albumid", number>;
-    }`  
+    }  
 
-    `interface AlbumInfo {
+    interface AlbumInfo {
       user: Partial<UserData>;
       album: AlbumData;
-    }`  
+    }  
 
-    `interface UserInfo {
+    interface UserInfo {
       user: UserData;
       color: string;
-    }`  
+    }  
 
-    `type AvatarInfo = Record<number, UserInfo>;`  
+    type AvatarInfo = Record<number, UserInfo>;  
 
 ## Components  
 ### AlbumList
@@ -122,24 +122,24 @@ url search params used to fetch data in a paginated way
 ### Avatar  
 Avatar component shows username and avatar of the album owner
 the below interface shows its props:  
-    `interface Props {
+    interface Props {
       user: Partial<UserData>;
       color: string;
-    }`  
+    }  
 
 
 ### Card
 Card is a general component and it is specialized to build Album and Photo Cards  
 > the interface shows the necessary props  
 
-    `interface Props {
+    interface Props {
       data: AlbumData | PhotoData;  
       user: Partial<UserData>;
       color?: string;
       onClick: (data: AlbumData | PhotoData, userData: Partial<UserData>) => void;
       withAvatar?: boolean;
       imageSrc?: string;
-    }`
+    }
 
 
 color and withAvatar and imageSrc are optional props because when we use card component as Photo component it does not contain Avatar component and its required data  
@@ -147,7 +147,7 @@ color and withAvatar and imageSrc are optional props because when we use card co
 here Card is used as Album Card:  
 [![HYGnMHN.png](https://iili.io/HYGnMHN.png)](https://freeimage.host/)  
 
-    ` data.map((item: AlbumData) => (
+     data.map((item: AlbumData) => (
                 <Card
                   data={item}
                   user={usersData[item.userId]?.user}
@@ -156,11 +156,11 @@ here Card is used as Album Card:
                   onClick={handleClick}
                   withAvatar={true}
                 />
-              ))`  
+              ))  
 here Card is used as Photo Card:  
 [![HYGxfEb.png](https://iili.io/HYGxfEb.png)](https://freeimage.host/)  
 
-        `data.map((item: PhotoData) => (
+        data.map((item: PhotoData) => (
               <Card
                 data={item}
                 onClick={() => handleClick(item)}
@@ -168,7 +168,7 @@ here Card is used as Photo Card:
                 user={user}
                 imageSrc={item.thumbnailUrl}
               />
-            ))`  
+            ))  
         
 ### Container  
 Container component wrapp all the components  
@@ -182,12 +182,12 @@ Modal component is created based on Dialog MU component
 it takes children and three other props as following:  
 
 
-    `interface Props extends PropsWithChildren<any> {
+    interface Props extends PropsWithChildren<any> {
       open: boolean;
       onClose: () => void;
       title?: string;
     }
-    `  
+      
 ### PageLimit   
 PageLimit component gives three options to user to change number of cards in a paginated page  
 it changes query params  
@@ -196,10 +196,10 @@ it changes query params
 PaginatedBox provide a grid container for cards, loading component and empty state component  
 
 it takes three props, children and two other props that are defined as following:  
-    `interface Props extends PropsWithChildren<any> {
+    interface Props extends PropsWithChildren<any> {
       data: any[];
       loading: boolean;
-    }`  
+    }  
 
 * when the loading is true the PaginatedBox shows Loading component  
 * when the data array is empty, the PaginatedBox shows EmptyState component
@@ -209,14 +209,14 @@ it takes three props, children and two other props that are defined as following
 ### Pagination  
 Pagination component created based on built-in MU pagination  
 
-    `<MuPagination
+    <MuPagination
               count={10}
               className={styles.pagination}
               color="primary"
               onChange={handleChange}
               page={page}
               size="small"
-            />`  
+            />  
 
 it changes the query params and data will be fetched by every page  
 count is is given a fixed value because the number of data can not be extracted from the jsonplaceholder apis  
