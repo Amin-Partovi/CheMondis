@@ -1,19 +1,4 @@
-##Documentation
 
-###The Card component is used to show both Album and Photo
-> the interface shows the necessary props  
-
-`interface Props {
-  data: AlbumData | PhotoData;  
-  user: Partial<UserData>;
-  color?: string;
-  onClick: (data: AlbumData | PhotoData, userData: Partial<UserData>) => void;
-  withAvatar?: boolean;
-  imageSrc?: string;
-}`
-
-
-color and withAvatar and imageSrc are optional props because when we use card component as Photo component it does not contain Avatar component and its required data
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
