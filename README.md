@@ -32,83 +32,83 @@ Information on users: https://jsonplaceholder.typicode.com/users
 ## Types
 here is the custom types used in the project  
 
-`type ApiLoading = "idle" | "pending" | "succeeded" | "failed";`  
+    `type ApiLoading = "idle" | "pending" | "succeeded" | "failed";`  
 
-`interface AlbumData {
-  userId: number;
-  id: number;
-  title: string;
-}`  
+    `interface AlbumData {
+      userId: number;
+      id: number;
+      title: string;
+    }`  
 
-`interface PhotoData {
-  albumId: number;
-  id: number;
-  title: string;
-  url: string;
-  thumbnailUrl: string;
-}`  
+    `interface PhotoData {
+      albumId: number;
+      id: number;
+      title: string;
+      url: string;
+      thumbnailUrl: string;
+    }`  
 
-`interface UserData {
-  id: number;
-  name: string;
-  username: string;
-  email: string;
-  address: {
-    street: string;
-    suite: string;
-    city: string;
-    zipcode: string;
-    geo: {
-      lat: string;
-      lng: string;
-    };
-  };
-  phone: string;
-  website: string;
-  company: {
-    name: string;
-    catchPhrase: string;
-    bs: string;
-  };
-}`  
+    `interface UserData {
+      id: number;
+      name: string;
+      username: string;
+      email: string;
+      address: {
+        street: string;
+        suite: string;
+        city: string;
+        zipcode: string;
+        geo: {
+          lat: string;
+          lng: string;
+        };
+      };
+      phone: string;
+      website: string;
+      company: {
+        name: string;
+        catchPhrase: string;
+        bs: string;
+      };
+    }`  
 
-`interface AlbumsReduxState {
-  data: Readonly<AlbumData>[];
-  loading: ApiLoading;
-  error: string;
-}`  
+    `interface AlbumsReduxState {
+      data: Readonly<AlbumData>[];
+      loading: ApiLoading;
+      error: string;
+    }`  
 
-`interface AlbumReduxState {
-  data: Readonly<PhotoData>[];
-  loading: ApiLoading;
-  error: string;
-}`  
+    `interface AlbumReduxState {
+      data: Readonly<PhotoData>[];
+      loading: ApiLoading;
+      error: string;
+    }`  
 
-`interface UsersReduxState {
-  data: Readonly<UserData>[];
-  loading: ApiLoading;
-  error: string;
-}`  
+    `interface UsersReduxState {
+      data: Readonly<UserData>[];
+      loading: ApiLoading;
+      error: string;
+    }`  
 
-`interface FetchAlbumsParams {
-  params: Record<"_start" | "_limit", number>;
-}`  
+    `interface FetchAlbumsParams {
+      params: Record<"_start" | "_limit", number>;
+    }`  
 
-`interface FetchAlbumParams {
-  params: Record<"_start" | "_limit" | "albumid", number>;
-}`  
+    `interface FetchAlbumParams {
+      params: Record<"_start" | "_limit" | "albumid", number>;
+    }`  
 
-`interface AlbumInfo {
-  user: Partial<UserData>;
-  album: AlbumData;
-}`  
+    `interface AlbumInfo {
+      user: Partial<UserData>;
+      album: AlbumData;
+    }`  
 
-`interface UserInfo {
-  user: UserData;
-  color: string;
-}`  
+    `interface UserInfo {
+      user: UserData;
+      color: string;
+    }`  
 
-`type AvatarInfo = Record<number, UserInfo>;`  
+    `type AvatarInfo = Record<number, UserInfo>;`  
 
 ## Components  
 ### AlbumList
@@ -122,24 +122,24 @@ url search params used to fetch data in a paginated way
 ### Avatar  
 Avatar component shows username and avatar of the album owner
 the below interface shows its props:  
-`interface Props {
-  user: Partial<UserData>;
-  color: string;
-}`  
+    `interface Props {
+      user: Partial<UserData>;
+      color: string;
+    }`  
 
 
 ### Card
 Card is a general component and it is specialized to build Album and Photo Cards  
 > the interface shows the necessary props  
 
-`interface Props {
-  data: AlbumData | PhotoData;  
-  user: Partial<UserData>;
-  color?: string;
-  onClick: (data: AlbumData | PhotoData, userData: Partial<UserData>) => void;
-  withAvatar?: boolean;
-  imageSrc?: string;
-}`
+    `interface Props {
+      data: AlbumData | PhotoData;  
+      user: Partial<UserData>;
+      color?: string;
+      onClick: (data: AlbumData | PhotoData, userData: Partial<UserData>) => void;
+      withAvatar?: boolean;
+      imageSrc?: string;
+    }`
 
 
 color and withAvatar and imageSrc are optional props because when we use card component as Photo component it does not contain Avatar component and its required data  
@@ -147,28 +147,28 @@ color and withAvatar and imageSrc are optional props because when we use card co
 here Card is used as Album Card:  
 [![HYGnMHN.png](https://iili.io/HYGnMHN.png)](https://freeimage.host/)  
 
-` data.map((item: AlbumData) => (
-            <Card
-              data={item}
-              user={usersData[item.userId]?.user}
-              color={usersData[item.userId]?.color}
-              key={item.id}
-              onClick={handleClick}
-              withAvatar={true}
-            />
-          ))`  
+    ` data.map((item: AlbumData) => (
+                <Card
+                  data={item}
+                  user={usersData[item.userId]?.user}
+                  color={usersData[item.userId]?.color}
+                  key={item.id}
+                  onClick={handleClick}
+                  withAvatar={true}
+                />
+              ))`  
 here Card is used as Photo Card:  
 [![HYGxfEb.png](https://iili.io/HYGxfEb.png)](https://freeimage.host/)  
 
-`data.map((item: PhotoData) => (
-          <Card
-            data={item}
-            onClick={() => handleClick(item)}
-            key={item.id}
-            user={user}
-            imageSrc={item.thumbnailUrl}
-          />
-        ))`  
+        `data.map((item: PhotoData) => (
+              <Card
+                data={item}
+                onClick={() => handleClick(item)}
+                key={item.id}
+                user={user}
+                imageSrc={item.thumbnailUrl}
+              />
+            ))`  
         
 ### Container  
 Container component wrapp all the components  
@@ -182,12 +182,12 @@ Modal component is created based on Dialog MU component
 it takes children and three other props as following:  
 
 
-`interface Props extends PropsWithChildren<any> {
-  open: boolean;
-  onClose: () => void;
-  title?: string;
-}
-`  
+    `interface Props extends PropsWithChildren<any> {
+      open: boolean;
+      onClose: () => void;
+      title?: string;
+    }
+    `  
 ### PageLimit   
 PageLimit component gives three options to user to change number of cards in a paginated page  
 it changes query params  
@@ -196,10 +196,10 @@ it changes query params
 PaginatedBox provide a grid container for cards, loading component and empty state component  
 
 it takes three props, children and two other props that are defined as following:  
-`interface Props extends PropsWithChildren<any> {
-  data: any[];
-  loading: boolean;
-}`  
+    `interface Props extends PropsWithChildren<any> {
+      data: any[];
+      loading: boolean;
+    }`  
 
 * when the loading is true the PaginatedBox shows Loading component  
 * when the data array is empty, the PaginatedBox shows EmptyState component
@@ -209,14 +209,14 @@ it takes three props, children and two other props that are defined as following
 ### Pagination  
 Pagination component created based on built-in MU pagination  
 
-`<MuPagination
-          count={10}
-          className={styles.pagination}
-          color="primary"
-          onChange={handleChange}
-          page={page}
-          size="small"
-        />`  
+    `<MuPagination
+              count={10}
+              className={styles.pagination}
+              color="primary"
+              onChange={handleChange}
+              page={page}
+              size="small"
+            />`  
 
 it changes the query params and data will be fetched by every page  
 count is is given a fixed value because the number of data can not be extracted from the jsonplaceholder apis  
@@ -225,12 +225,12 @@ count is is given a fixed value because the number of data can not be extracted 
 PhotoDetail shows the photo in fullsize and information about album and album owner  
 
 it takes following props:  
-`interface Props {
-  photo: PhotoData;
-  albumTitle: string;
-  owner: string;
-}
-`  
+    `interface Props {
+      photo: PhotoData;
+      albumTitle: string;
+      owner: string;
+    }
+    `  
 ### PhotoList
 
 PhotoList fetches photos and render the photos in Cards  
