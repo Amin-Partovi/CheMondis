@@ -2,9 +2,9 @@ import React, { useState } from "react";
 
 import { AlbumData, PhotoData, UserData } from "../../utils/types";
 import Show from "../../assets/images/show.svg";
+import Avatar from "../avatar/Avatar";
 
 import styles from "./card.module.scss";
-import Avatar from "../avatar/Avatar";
 
 const IMG_SRC = "https://via.placeholder.com/150/00ff";
 

@@ -15,7 +15,6 @@ const StyledDialog = styled(Dialog)(({ theme }) => ({
   "& 	.MuiDialog-paper": {
     backgroundColor: "#494653",
     color: "#ffffff",
-    // width: "800px",
   },
   "& .MuiDialogTitle-root": {
     display: "flex",
@@ -62,10 +61,9 @@ const Modal: React.FC<Props> = ({ open, onClose, children, title = " " }) => {
         aria-labelledby="customized-dialog-title"
         open={open}
         maxWidth={"lg"}
-
       >
         <DialogTitle id="customized-dialog-title" onClose={onClose}>
-          <h1 className={styles.title}>{title}</h1>
+          <span className={styles.title}>{title}</span>
         </DialogTitle>
         <DialogContent dividers>{children}</DialogContent>
       </StyledDialog>

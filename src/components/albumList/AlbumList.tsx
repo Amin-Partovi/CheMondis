@@ -72,7 +72,7 @@ const AlbumList: React.FC = () => {
         data={data}
         loading={loading === "pending" || usersLoading === "pending"}
       >
-        {Object.keys(usersData).length &&
+        {Object.keys(usersData).length > 0 &&
           data.map((item: AlbumData) => (
             <Card
               data={item}

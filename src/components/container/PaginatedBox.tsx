@@ -13,6 +13,7 @@ interface Props extends PropsWithChildren<any> {
 }
 
 const PaginatedBox: React.FC<Props> = ({ children, data, loading }) => {
+  
   return (
     <>
       {loading ? (
