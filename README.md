@@ -29,6 +29,87 @@ Information on users: https://jsonplaceholder.typicode.com/users
 * the modal shows the photo in full size  
 * also the photos owner, album and title are shown  
 
+## Types
+here is the custom types used in the project  
+
+`type ApiLoading = "idle" | "pending" | "succeeded" | "failed";`  
+
+`interface AlbumData {
+  userId: number;
+  id: number;
+  title: string;
+}`  
+
+`interface PhotoData {
+  albumId: number;
+  id: number;
+  title: string;
+  url: string;
+  thumbnailUrl: string;
+}`  
+
+`interface UserData {
+  id: number;
+  name: string;
+  username: string;
+  email: string;
+  address: {
+    street: string;
+    suite: string;
+    city: string;
+    zipcode: string;
+    geo: {
+      lat: string;
+      lng: string;
+    };
+  };
+  phone: string;
+  website: string;
+  company: {
+    name: string;
+    catchPhrase: string;
+    bs: string;
+  };
+}`  
+
+`interface AlbumsReduxState {
+  data: Readonly<AlbumData>[];
+  loading: ApiLoading;
+  error: string;
+}`  
+
+`interface AlbumReduxState {
+  data: Readonly<PhotoData>[];
+  loading: ApiLoading;
+  error: string;
+}`  
+
+`interface UsersReduxState {
+  data: Readonly<UserData>[];
+  loading: ApiLoading;
+  error: string;
+}`  
+
+`interface FetchAlbumsParams {
+  params: Record<"_start" | "_limit", number>;
+}`  
+
+`interface FetchAlbumParams {
+  params: Record<"_start" | "_limit" | "albumid", number>;
+}`  
+
+`interface AlbumInfo {
+  user: Partial<UserData>;
+  album: AlbumData;
+}`  
+
+`interface UserInfo {
+  user: UserData;
+  color: string;
+}`  
+
+`type AvatarInfo = Record<number, UserInfo>;`  
+
 ## Components  
 ### AlbumList
 AlbumList fetches user data and albums and render the albums in Cards  
