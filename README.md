@@ -1,6 +1,6 @@
 # Documentation  
 
-### This Project is written by React library and Redux and Redux Toolkit used for state management.
+### This Project is written by React library, Redux and Redux Toolkit used for state management.
 
 JSONPlaceholder API used to fetch data  
 
