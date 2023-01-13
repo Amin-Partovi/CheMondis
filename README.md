@@ -32,21 +32,21 @@ Information on users: https://jsonplaceholder.typicode.com/users
 ## Types
 here is the custom types used in the project  
 
-    `type ApiLoading = "idle" | "pending" | "succeeded" | "failed";`  
+    type ApiLoading = "idle" | "pending" | "succeeded" | "failed";  
 
-    `interface AlbumData {
+    interface AlbumData {
       userId: number;
       id: number;
       title: string;
-    }`  
+    }  
 
-    `interface PhotoData {
+    interface PhotoData {
       albumId: number;
       id: number;
       title: string;
       url: string;
       thumbnailUrl: string;
-    }`  
+    }  
 
     `interface UserData {
       id: number;
@@ -225,12 +225,12 @@ count is is given a fixed value because the number of data can not be extracted 
 PhotoDetail shows the photo in fullsize and information about album and album owner  
 
 it takes following props:  
-    `interface Props {
-      photo: PhotoData;
-      albumTitle: string;
-      owner: string;
-    }
-    `  
+        interface Props {
+          photo: PhotoData;
+          albumTitle: string;
+          owner: string;
+        }
+      
 ### PhotoList
 
 PhotoList fetches photos and render the photos in Cards  
