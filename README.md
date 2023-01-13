@@ -29,7 +29,7 @@ Information on users: https://jsonplaceholder.typicode.com/users
 * the modal shows the photo in full size  
 * also the photos owner, album and title are shown  
 
-##Components  
+## Components  
 ### AlbumList
 AlbumList fetches user data and albums and render the albums in Cards  
 
