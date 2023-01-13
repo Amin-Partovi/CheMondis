@@ -196,10 +196,11 @@ it changes query params
 PaginatedBox provide a grid container for cards, loading component and empty state component  
 
 it takes three props, children and two other props that are defined as following:  
-    interface Props extends PropsWithChildren<any> {
-      data: any[];
-      loading: boolean;
-    }  
+
+        interface Props extends PropsWithChildren<any> {
+          data: any[];
+          loading: boolean;
+        }  
 
 * when the loading is true the PaginatedBox shows Loading component  
 * when the data array is empty, the PaginatedBox shows EmptyState component
