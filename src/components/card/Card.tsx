@@ -25,7 +25,8 @@ const Card: React.FC<Props> = ({
   withAvatar = false,
   imageSrc = IMG_SRC,
 }) => {
-  const { title } = data;
+  const { title } = data || {};
+  const { username } = user || {};
 
   const [isHovered, setIsHovered] = useState<boolean>(false);
 
@@ -44,7 +45,7 @@ const Card: React.FC<Props> = ({
         onMouseEnter={handleMouseEnter}
         onMouseLeave={handleMouseLeave}
       >
-        {user && withAvatar && <Avatar user={user} color={color} />}
+        {user && withAvatar && <Avatar username={username} color={color} />}
         <div className={styles["image-box"]}>
           <img className={styles.cover} src={imageSrc} alt={title} />
 

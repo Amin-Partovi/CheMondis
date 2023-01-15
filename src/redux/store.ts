@@ -13,7 +13,7 @@ const persistConfig = {
   storage,
 };
 
-const rootReducer = combineReducers({
+export const rootReducer = combineReducers({
   albumInfo: persistReducer(persistConfig, albumInfo),
   albums,
   photos,
