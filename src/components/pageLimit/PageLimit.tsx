@@ -18,20 +18,20 @@ const PageLimit: React.FC = () => {
   }
 
   return (
-    <div className={styles["limit-box"]}>
+    <ul className={styles["limit-box"]}>
       {pageLimits.map((item: number, index: number) => (
         <div key={item} className={styles["flex-box"]}>
           <div
             className={`${styles.limit} ${+limit === item && styles.active}`}
           >
-            <span onClick={() => handleClick(item)}>{item}</span>
+            <li onClick={() => handleClick(item)}>{item}</li>
           </div>
           {index !== pageLimits.length - 1 && "|"}
         </div>
       ))}
 
       <span>{texts.PER_PAGE}</span>
-    </div>
+    </ul>
   );
 };
 
