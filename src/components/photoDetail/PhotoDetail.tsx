@@ -1,10 +1,9 @@
 import React from "react";
 
-import styles from "./photo-detail.module.scss";
-
-import Close from "../../assets/images/close.svg";
 import { PhotoData } from "../../utils/types";
 import { texts } from "../../texts/text";
+
+import styles from "./photo-detail.module.scss";
 
 interface Props {
   photo: PhotoData;
@@ -16,7 +15,7 @@ const PhotoDetail: React.FC<Props> = ({ photo, albumTitle, owner }) => {
   return (
     <div className={styles["photo-box"]}>
       <img src={photo.url} alt={photo.title} className={styles.photo} />
-      <div className={styles.details}>
+      <div className={styles.details} role="meta-data">
         <div>
           {texts.OWNER}: <strong>{owner}</strong>
         </div>
