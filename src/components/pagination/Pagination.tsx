@@ -24,7 +24,7 @@ const Pagination: React.FC = () => {
     setSearchParams(searchParams);
   }
   return (
-    <div className={styles["pagination-box"]}>
+    <div className={styles["pagination-box"]} data-testid="pagination">
       <Stack spacing={1}>
         <MuPagination
           count={10}

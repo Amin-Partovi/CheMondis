@@ -71,6 +71,7 @@ const AlbumList: React.FC = () => {
       <PaginatedBox
         data={data}
         loading={loading === "pending" || usersLoading === "pending"}
+      
       >
         {Object.keys(usersData).length > 0 &&
           data.map((item: AlbumData) => (
