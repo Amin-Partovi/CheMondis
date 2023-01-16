@@ -39,7 +39,11 @@ const Card: React.FC<Props> = ({
   }
 
   return (
-    <div onClick={() => onClick(data, user)} className={styles.link}>
+    <div
+      onClick={() => onClick(data, user)}
+      className={styles.link}
+      data-testid="card"
+    >
       <div
         className={styles["album-box"]}
         onMouseEnter={handleMouseEnter}

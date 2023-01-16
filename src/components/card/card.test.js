@@ -89,6 +89,6 @@ describe("photo card", () => {
   test("render a photo thumbnail as a cover", async () => {
     const titleText = photoProps.data.title;
     const image = await screen.findByAltText(titleText);
-    expect(image).toHaveAttribute("src", photoProps.data.thumbnailUrl);
+    expect(image).toHaveAttribute("src", photoProps.imageSrc);
   });
 });
