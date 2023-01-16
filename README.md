@@ -8,6 +8,8 @@ Pagination of albums: https://jsonplaceholder.typicode.com/albums?_start=0&_limi
 Photos of a specific album: https://jsonplaceholder.typicode.com/photos?albumId=5&_start=0&_limit=5  
 Information on users: https://jsonplaceholder.typicode.com/users  
 
+## Purposes
+
 1. Album Page
 * display the albums in a grid  
 * use https://via.placeholder.com/150/00ff as album cover image  
@@ -28,6 +30,12 @@ Information on users: https://jsonplaceholder.typicode.com/users
 * clicking on a photo thumbnail opens a modal  
 * the modal shows the photo in full size  
 * also the photos owner, album and title are shown  
+
+## Tests
+### Testing is done to ensure that the app will work as intended for you. Jest and React Testing Library are used for this purpose.  
+A total of 24 test cases have been developed for this project, covering the most important requirements  
+
+
 
 ## Types
 here is the custom types used in the project  
