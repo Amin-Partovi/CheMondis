@@ -32,7 +32,7 @@ Information on users: https://jsonplaceholder.typicode.com/users
 * also the photos owner, album and title are shown  
 
 ## Tests
-### Testing is done to ensure that the app will work as intended for you. Jest and React Testing Library are used for this purpose.  
+### Testing was done to ensure that the app will work as intended for you. Jest and React Testing Library were used for this purpose.  
 A total of 24 test cases have been developed for this project, covering the most important requirements  
 
 
