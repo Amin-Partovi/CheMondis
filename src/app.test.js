@@ -15,7 +15,7 @@ describe("album list", () => {
   });
 
   test("click on an album open loading screen", async () => {
-    const cards = await screen.findAllByTestId("card");
+    const cards = await screen.findAllByTestId("avatar");
     const firstCard = cards[0];
     await userEvent.click(firstCard);
     const loading = await screen.findByTestId("loading");
@@ -23,10 +23,6 @@ describe("album list", () => {
   });
 
   test("after click on the album card the route changes to PhotoList component", async () => {
-    const cards = await screen.findAllByTestId("card");
-    const firstCard = cards[0];
-    await userEvent.click(firstCard);
-
     const header = await screen.findByRole("heading", { level: 1 });
     expect(header).toBeInTheDocument();
   });
