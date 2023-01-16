@@ -10,7 +10,7 @@ const App: React.FC = () => {
   return (
     <Container>
       <Suspense fallback="">
-        <Router>
+        <Router >
           <Routes>
             <Route path="/" element={<AlbumList />} />
 
