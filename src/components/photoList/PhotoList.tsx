@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { Suspense, useEffect, useState } from "react";
 import { useParams, useSearchParams } from "react-router-dom";
 
 import { useAppSelector } from "../../hooks/useAppSelector";
@@ -42,21 +42,27 @@ const PhotoList: React.FC = () => {
 
   return (
     <div>
-      <PhotoListHeader title={album.title} owner={user.name} />
-      <Modal open={isOpen} onClose={handleClose} title={photo?.title}>
-        <PhotoDetail photo={photo} albumTitle={album.title} owner={user.name} />
-      </Modal>
-      <PaginatedBox data={data} loading={loading === "pending"}>
-        {data.map((item: PhotoData) => (
-          <Card
-            data={item}
-            onClick={() => handleClick(item)}
-            key={item.id}
-            user={user}
-            imageSrc={item.thumbnailUrl}
+      <Suspense fallback="">
+        <PhotoListHeader title={album.title} owner={user.name} />
+        <Modal open={isOpen} onClose={handleClose} title={photo?.title}>
+          <PhotoDetail
+            photo={photo}
+            albumTitle={album.title}
+            owner={user.name}
           />
-        ))}
-      </PaginatedBox>
+        </Modal>
+        <PaginatedBox data={data} loading={loading === "pending"}>
+          {data.map((item: PhotoData) => (
+            <Card
+              data={item}
+              onClick={() => handleClick(item)}
+              key={item.id}
+              user={user}
+              imageSrc={item.thumbnailUrl}
+            />
+          ))}
+        </PaginatedBox>
+      </Suspense>
     </div>
   );
 };
